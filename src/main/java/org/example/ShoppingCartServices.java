@@ -1,6 +1,7 @@
 package main.java.org.example;
 
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class ShoppingCartServices {
    HashMap<Item, Integer> cart = new HashMap<>();
@@ -30,16 +31,23 @@ public void addItem(String name, double price, int quantity) {
     }
 }
 
-/*
-    public void removeItem()
-    list items in cart, ask what to remove and how many (if all or some)
+
+    public void removeItem() {
+        displayCart();
+        Scanner scanner = new Scanner(System.in);
+        io.writeMessage("Enter the Id of the item you want to remove.");
+        int itemId = scanner.nextInt();
+        io.writeMessage("Enter the quantity to remove.");
+        int quantity = scanner.nextInt();
+        io.writeMessage(quantity + "Item(s) " + itemId + "removed from your cart.");
+    }
+    /*list items in cart, ask what to remove and how many (if all or some)
 
     double checkout()
     double total -- go through all items in cart and add to total the price of item * quantity
     total = total cart
     remove all
     return total
-
     */
 
 

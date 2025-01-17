@@ -44,7 +44,7 @@ public class MenuController {
                     io.writeMessage("Display cart");
                     break;
                 case CHOICE_REMOVE_AN_ITEM:
-                    //method for removing an item();
+                    choiceRemoveAnItem();
                     io.writeMessage("Remove item");
                     break;
                 case CHOICE_ADD_AN_ITEM:
@@ -74,19 +74,29 @@ public class MenuController {
     }
 
     public void choiceAddAnItem() {
-        displayInventory();
+        System.out.println("Current Inventory");
+        int id = 1;
+        for(Item item : inventory) {
+            System.out.println(id + ": " + item);
+            id++;
+        }
         //for (Item item : inventory) {
             //System.out.println(item);
         //}
         Scanner scanner = new Scanner(System.in);
         //prompt user to select items and save to a new variable
         io.writeMessage("Enter the Id of the item you would like to add.");
-        int itemAdded = scanner.nextInt();
+        int itemId = scanner.nextInt();
+
+        Item selectedItem = inventory.get(itemId - 1);
+
         //get quantity and save to new variable
         io.writeMessage("Enter the quantity you would like.");
         int quantity = scanner.nextInt();
+
         // call add item in services and pass in data from user
-        ShoppingCartServices.addItem();
+        ShoppingCartServices.addItem(selectedItem.getName(), selectedItem.getPrice(), quantity);
+        System.out.println(quantity + " " + selectedItem.getName() + " was added to your cart.");
     }
     public void choiceDisplayCart() {
         shoppingCartServices.displayCart();
@@ -94,17 +104,20 @@ public class MenuController {
 
     public void choiceRemoveAnItem() {
         shoppingCartServices.displayCart();
-
         Scanner scanner = new Scanner(System.in);
         io.writeMessage("Enter the Id of the item you want to remove.");
+        int itemId = scanner.nextInt();
+        ShoppingCartServices.removeItem(itemId);
+
+
     }
 
-    public void displayInventory() {
+    /*public void displayInventory() {
         System.out.println("Current Inventory");
         int id = 1;
         for(Item item : inventory) {
             System.out.println(id + ": " + item);
             id++;
         }
-    }
+    }*/
 }
