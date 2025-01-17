@@ -6,32 +6,29 @@ public class ShoppingCartServices {
    HashMap<Item, Integer> cart = new HashMap<>();
    ConsoleIO io;
 
-/*
+
 public void displayCart() {
    if (cart.isEmpty()) {
       io.writeMessage("Cart is empty");
    } else {
       io.writeMessage("Items in cart:");
-      cart.forEach((item, quantity) -> {
-         io.writeMessage(item, quantity, item.getPrice() * quantity);});
+      int itemCount = 0;
+      for(Item key : cart.keySet()) {
+          io.writeMessage(itemCount + ". Item: " + key + " Quantity: " + cart.get(key));
+          itemCount++;
       }
    }
 }
-*/
 
-/*
-    } else {
-      items.forEach((
-
-   /*
-public void addItem(String name, double price) {
+public void addItem(String name, double price, int quantity) {
+    Item item = new Item(name, price);
     if(cart.containsKey(item)) {
-        int newQuantity = cart.get(itemName) + quantity;
-        cart.put(itemName, newQuantity);
+        int newQuantity = cart.get(item) + quantity;
+        cart.put(item, newQuantity);
     } else {
-        cart.put(itemName, quantity);
+        cart.put(item, quantity);
     }
-} */
+}
 
 /*
     public void removeItem()

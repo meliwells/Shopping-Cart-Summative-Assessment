@@ -28,22 +28,6 @@ public class Item {
         this.price = price;
     }
 
-  /* @Override
-    public int hashCode() {
-        return Objects.hash(getName(), getPrice());  //pass in all data to be considered
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if(this == 0) {
-            return true;
-        }
-        if(o instanceof Item) {
-            if((Item) o).getName().equals(this.name) && (((Item)o).getPrice() == (this.price);
-        }
-        return false;
-    }*/
-
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Item item)) return false;

@@ -1,5 +1,8 @@
 package main.java.org.example;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class MenuController {
     ConsoleIO io;
     ShoppingCartServices shoppingCartServices = new ShoppingCartServices();
@@ -14,8 +17,19 @@ public class MenuController {
     private static final int MIN_CHOICE = 1;
     private static final int MAX_CHOICE = 5;
 
+    static ArrayList<Item> inventory = new ArrayList<>();
+
     public MenuController(ConsoleIO io) {
         this.io = io;
+    }
+
+    //create method to initialize inventory
+    public void inventory() {
+        inventory.add(new Item("Fruit", 0.50));
+        inventory.add(new Item("Chips", 0.75));
+        inventory.add(new Item("Granola Bar", 0.75));
+        inventory.add(new Item("Soda", 1.25));
+        inventory.add(new Item("Candy Bar", 1.00));
     }
 
     public void run() {
@@ -26,7 +40,7 @@ public class MenuController {
 
             switch (choice) {
                 case CHOICE_DISPLAY_CART:
-                    //shoppingCartServices.displayCart();
+                    choiceDisplayCart();
                     io.writeMessage("Display cart");
                     break;
                 case CHOICE_REMOVE_AN_ITEM:
@@ -34,7 +48,7 @@ public class MenuController {
                     io.writeMessage("Remove item");
                     break;
                 case CHOICE_ADD_AN_ITEM:
-                    //method for adding an item();
+                    choiceAddAnItem();
                     io.writeMessage("Add item");
                     break;
                 case CHOICE_CHECKOUT:
@@ -57,5 +71,40 @@ public class MenuController {
         io.writeMessage(CHOICE_CHECKOUT + ". Checkout");
         io.writeMessage(CHOICE_EXIT + ". Exit");
 
+    }
+
+    public void choiceAddAnItem() {
+        displayInventory();
+        //for (Item item : inventory) {
+            //System.out.println(item);
+        //}
+        Scanner scanner = new Scanner(System.in);
+        //prompt user to select items and save to a new variable
+        io.writeMessage("Enter the Id of the item you would like to add.");
+        int itemAdded = scanner.nextInt();
+        //get quantity and save to new variable
+        io.writeMessage("Enter the quantity you would like.");
+        int quantity = scanner.nextInt();
+        // call add item in services and pass in data from user
+        ShoppingCartServices.addItem();
+    }
+    public void choiceDisplayCart() {
+        shoppingCartServices.displayCart();
+    }
+
+    public void choiceRemoveAnItem() {
+        shoppingCartServices.displayCart();
+
+        Scanner scanner = new Scanner(System.in);
+        io.writeMessage("Enter the Id of the item you want to remove.");
+    }
+
+    public void displayInventory() {
+        System.out.println("Current Inventory");
+        int id = 1;
+        for(Item item : inventory) {
+            System.out.println(id + ": " + item);
+            id++;
+        }
     }
 }
