@@ -5,7 +5,7 @@ public class App {
     public static void main( String[] args ){
         ConsoleIO io = new ConsoleIO();
         MenuController menuController = new MenuController(io);
-        menuController.printMainMenu();
+        //menuController.printMainMenu();
         menuController.run();
     }
 }

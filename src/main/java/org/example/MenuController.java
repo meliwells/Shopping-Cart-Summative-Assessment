@@ -2,6 +2,7 @@ package main.java.org.example;
 
 public class MenuController {
     ConsoleIO io;
+    ShoppingCartServices shoppingCartServices = new ShoppingCartServices();
 
     //switch for menu choices
     private static final int CHOICE_DISPLAY_CART = 1;
@@ -25,19 +26,23 @@ public class MenuController {
 
             switch (choice) {
                 case CHOICE_DISPLAY_CART:
-                    //method for displaying cart();
+                    //shoppingCartServices.displayCart();
+                    io.writeMessage("Display cart");
                     break;
                 case CHOICE_REMOVE_AN_ITEM:
                     //method for removing an item();
+                    io.writeMessage("Remove item");
                     break;
                 case CHOICE_ADD_AN_ITEM:
                     //method for adding an item();
+                    io.writeMessage("Add item");
                     break;
                 case CHOICE_CHECKOUT:
                     //method for checkout
+                    io.writeMessage("Checkout");
                     break;
                 case CHOICE_EXIT:
-                    io.writeMessage("Thank you for visiting");
+                    io.writeMessage("Thank you for visiting!");
                     isRunning = false;
                     break;
             }
@@ -45,7 +50,7 @@ public class MenuController {
     }
 
     public void printMainMenu() {
-        io.writeMessage(">>> Main Menu <<<");
+        io.writeMessage("--- Main Menu ---");
         io.writeMessage(CHOICE_DISPLAY_CART + ". Display Cart");
         io.writeMessage(CHOICE_REMOVE_AN_ITEM + ". Remove An Item");
         io.writeMessage(CHOICE_ADD_AN_ITEM + ". Add An Item");
