@@ -25,11 +25,11 @@ public class MenuController {
 
     //create method to initialize inventory
     public void inventory() {
-        inventory.add(new Item("Fruit", 0.50));
+        inventory.add(new Item("Fruit(s)", 0.50));
         inventory.add(new Item("Chips", 0.75));
-        inventory.add(new Item("Granola Bar", 0.75));
-        inventory.add(new Item("Soda", 1.25));
-        inventory.add(new Item("Candy Bar", 1.00));
+        inventory.add(new Item("Granola Bar(s)", 0.75));
+        inventory.add(new Item("Soda(s)", 1.25));
+        inventory.add(new Item("Candy Bar(s)", 1.00));
     }
 
     public void run() {
@@ -74,15 +74,13 @@ public class MenuController {
     }
 
     public void choiceAddAnItem() {
-        System.out.println("Current Inventory");
+        inventory();
+        System.out.println("Current Inventory: ");
         int id = 1;
         for(Item item : inventory) {
             System.out.println(id + ": " + item);
             id++;
         }
-        //for (Item item : inventory) {
-            //System.out.println(item);
-        //}
         Scanner scanner = new Scanner(System.in);
         //prompt user to select items and save to a new variable
         io.writeMessage("Enter the Id of the item you would like to add.");
@@ -95,8 +93,8 @@ public class MenuController {
         int quantity = scanner.nextInt();
 
         // call add item in services and pass in data from user
-        ShoppingCartServices.addItem(selectedItem.getName(), selectedItem.getPrice(), quantity);
-        System.out.println(quantity + " " + selectedItem.getName() + " was added to your cart.");
+        shoppingCartServices.addItem(selectedItem.getName(), selectedItem.getPrice(), quantity);
+        System.out.println(quantity + " " + selectedItem.getName() + " added to your cart.");
     }
     public void choiceDisplayCart() {
         shoppingCartServices.displayCart();
@@ -107,7 +105,9 @@ public class MenuController {
         Scanner scanner = new Scanner(System.in);
         io.writeMessage("Enter the Id of the item you want to remove.");
         int itemId = scanner.nextInt();
-        ShoppingCartServices.removeItem(itemId);
+        io.writeMessage("Enter the quantity to remove.");
+        int quantity = scanner.nextInt();
+        io.writeMessage(quantity + "Item(s) " + itemId + "removed from your cart.");
 
 
     }

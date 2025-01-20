@@ -34,12 +34,7 @@ public void addItem(String name, double price, int quantity) {
 
     public void removeItem() {
         displayCart();
-        Scanner scanner = new Scanner(System.in);
-        io.writeMessage("Enter the Id of the item you want to remove.");
-        int itemId = scanner.nextInt();
-        io.writeMessage("Enter the quantity to remove.");
-        int quantity = scanner.nextInt();
-        io.writeMessage(quantity + "Item(s) " + itemId + "removed from your cart.");
+
     }
     /*list items in cart, ask what to remove and how many (if all or some)
 
